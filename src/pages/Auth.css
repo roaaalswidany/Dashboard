@@ -1,0 +1,135 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #4880ff;
+  overflow: hidden;
+}
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 498px;
+  padding: 32px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+}
+
+.text {
+  margin-bottom: 31px;
+  color: #202224;
+  text-align: center;
+}
+.text h1 {
+  font-size: 32px;
+  font-weight: bold;
+}
+.text p {
+  font-size: 18px;
+}
+
+form {
+  width: 100%;
+}
+
+.sec1,
+.sec2 {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  font-size: 14px;
+  color: #202224;
+}
+
+input {
+  width: 100%;
+  height: 42px;
+  margin: 16px 0;
+  padding: 13px 16px;
+  border: 1px solid #d8d8d8;
+  background-color: #f8f8f8;
+  font-size: 14px;
+  color: #a6a6a6;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+
+button {
+  width: 100%;
+  height: 45px;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  border: none;
+  background-color: #4880ff;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+a {
+  color: #5a8cff;
+}
+
+.space {
+  margin-top: 200px;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  margin-top: 4px;
+  border: 2px dashed #4880ff4d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.profile-image input {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .auth {
+    width: 85%;
+    padding: 20px;
+  }
+  .sec1,
+  .sec2 {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth {
+    padding: 15px;
+  }
+  .text h1 {
+    font-size: 24px;
+  }
+}
