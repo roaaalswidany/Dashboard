@@ -1,25 +1,39 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const EditItem = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [image_url, setImageUrl] = useState("");
-  const [previewImage, setPreviewImage] = useState(null);
+  const [image, setImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState("");
 
   useEffect(() => {
+    if (!id) {
+      console.error("Error: ID is undefined");
+      return;
+    }
+
     const fetchItem = async () => {
       try {
-        const res = await axios.get(`https://vica.website/api/items/${id}`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        const token = localStorage.getItem("token")?.replace("Bearer ", "");
+        if (!token) throw new Error("Token is missing!");
+
+        const response = await fetch(`https://vica.website/api/items/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
         });
-        console.log(res.data);
-        setName(res.data.name);
-        setPrice(res.data.price);
-        setPreviewImage(res.data.image_url);
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch item");
+        }
+
+        const data = await response.json();
+        console.log("Fetched data:", data);
+
+        setName(data.name);
+        setPrice(data.price);
+        setPreviewImage(data.image_url);
       } catch (error) {
         console.error("Error fetching item:", error);
       }
@@ -30,10 +44,9 @@ const EditItem = () => {
 
   const handleImageChange = (e) => {
     e.preventDefault();
-    console.log(name, price, image_url);
     const file = e.target.files[0];
     if (file) {
-      setImageUrl(file);
+      setImage(file);
       setPreviewImage(URL.createObjectURL(file));
     }
   };
@@ -49,30 +62,36 @@ const EditItem = () => {
     let formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
+    if (image) {
+      formData.append("image", image);
+    }
 
-    if (image_url instanceof File) {
-      formData.append("image", image_url);
+    console.log("FormData content:");
+    for (let pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
     }
 
     try {
-      const response = await axios.put(
-        `https://vica.website/api/items/${id}`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const token = localStorage.getItem("token")?.replace("Bearer ", "");
+      if (!token) throw new Error("Token is missing!");
 
-      console.log("Update successful:", response.data);
+      const response = await fetch(`https://vica.website/api/items/${id}`, {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to update item");
+      }
+
+      const responseData = await response.json();
+      console.log("Update successful:", responseData);
       navigate("/dashboard");
     } catch (error) {
-      console.error(
-        "Error updating item:",
-        error.response?.data || error.message
-      );
+      console.error("Error updating item:", error);
+      alert(error.message);
     }
   };
 
