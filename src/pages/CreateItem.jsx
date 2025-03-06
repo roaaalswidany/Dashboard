@@ -11,7 +11,7 @@ const CreateItem = () => {
   const sendData = async (event) => {
     event.preventDefault();
 
-    if (!name || !price || !image) {
+    if (!name || !price || !image_url) {
       alert("Please fill all fields.");
       return;
     }
@@ -19,7 +19,7 @@ const CreateItem = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
-    formData.append("image_url", image_url);
+    formData.append("image", image_url);
 
     try {
       const res = await axios.post("https://vica.website/api/items", formData, {

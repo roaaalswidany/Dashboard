@@ -74,7 +74,7 @@ const Items = () => {
                 <td>{item.name}</td>
                 <td>${parseFloat(item.price).toFixed(2)}</td>
                 <td>
-                  {item.image ? (
+                  {item.image_url ? (
                     <img
                       src={`${item.image_url}`}
                       alt={item.name}
