@@ -29,6 +29,7 @@ const routes = createBrowserRouter([
       { path: "item/edit/:id", element: <EditItem /> },
     ],
   },
+  (basename: "/Dashboard"),
 ]);
 
 createRoot(document.getElementById("root")).render(

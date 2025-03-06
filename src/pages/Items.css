@@ -21,7 +21,7 @@
 }
 
 .add-button {
-  background-color: #007bff;
+  background-color: #4880ff;
   color: white;
   padding: 10px 15px;
   border-radius: 5px;
@@ -30,10 +30,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+  -webkit-border-radius: ;
+  -moz-border-radius: ;
+  -ms-border-radius: ;
+  -o-border-radius: ;
 }
 
 .add-button:hover {
@@ -49,18 +49,30 @@
 
 .products-table th,
 .products-table td {
-  border: 1px solid #ddd;
   padding: 10px;
+  border-bottom: 1px solid #d5d5d5;
   text-align: center;
+  color: #202224;
 }
 
 .products-table th {
-  background-color: #f8f9fa;
+  background-color: #d5d5d5;
 }
 
 .product-image {
-  width: 100px;
-  height: 100px;
+  width: 56px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+  -webkit-border-radius: ;
+  -moz-border-radius: ;
+  -ms-border-radius: ;
+  -o-border-radius: ;
+}
+
+.product-images {
+  width: 164px;
+  height: 171px;
   object-fit: cover;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -86,6 +98,7 @@
   font-size: 14px;
   border: 1px solid #979797;
   background-color: #979797;
+  border-top-left-radius: 8px;
   border-radius: 8px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -139,7 +152,7 @@
 .input-label {
   font-size: 14px;
   font-weight: bold;
-  color: #333;
+  color: #202224;
 }
 
 .input-field {
@@ -148,8 +161,12 @@
   border: 1px solid #d8d8d8;
   border-radius: 6px;
   font-size: 14px;
-  background-color: white;
+  background-color: #f1f4f9;
   outline: none;
+  -webkit-border-radius: ;
+  -moz-border-radius: ;
+  -ms-border-radius: ;
+  -o-border-radius: ;
 }
 
 .save-button {
@@ -181,14 +198,15 @@
   border: 2px dashed #4880ff4d;
   color: #4880ff;
   border-radius: 4px;
-  min-width: 200px;
-  height: 200px;
+  min-width: 475px;
+  height: 218px;
   background-color: #ffffff;
   cursor: pointer;
 }
 
 .upload-icon {
-  width: 120px;
+  width: 123px;
+  height: 112px;
 }
 
 @media (max-width: 992px) {

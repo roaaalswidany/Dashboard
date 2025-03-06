@@ -66,6 +66,8 @@ const EditItem = () => {
       formData.append("image", image);
     }
 
+    formData.append("_methode", "PUT");
+
     console.log("FormData content:");
     for (let pair of formData.entries()) {
       console.log(pair[0], pair[1]);
@@ -76,9 +78,14 @@ const EditItem = () => {
       if (!token) throw new Error("Token is missing!");
 
       const response = await fetch(`https://vica.website/api/items/${id}`, {
-        method: "PUT",
-        headers: { Authorization: `Bearer ${token}` },
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+
         body: formData,
+        _method: "PUT",
       });
 
       if (!response.ok) {
@@ -121,18 +128,18 @@ const EditItem = () => {
           />
 
           <button type="submit" className="save-button">
-            Update
+            Send
           </button>
         </form>
 
         <div className="upload-section">
-          <label className="upload-box">
+          <label className="upload-box ">
             <input type="file" onChange={handleImageChange} hidden />
             {previewImage ? (
               <img
                 src={previewImage}
                 alt="Selected"
-                className="product-image"
+                className="product-images"
               />
             ) : (
               <img

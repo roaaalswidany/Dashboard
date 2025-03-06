@@ -23,12 +23,12 @@ const Sidebar = () => {
       <ul className="menu">
         <li>
           <Link to="/dashboard">
-            <i className="fa-solid fa-table-cells-large"></i> Dashboard
+            <i className="fa-solid fa-clock"></i> Dashboard
           </Link>
         </li>
         <li>
           <Link to="/dashboard/items">
-            <i className="fa-solid fa-clock"></i> Products
+            <i className="fa-solid fa-table-cells-large"></i> Products
           </Link>
         </li>
       </ul>
