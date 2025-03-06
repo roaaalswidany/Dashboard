@@ -53,46 +53,37 @@ const EditItem = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!name.trim() || !price.trim()) {
       alert("Please fill in all required fields.");
       return;
     }
-
     let formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
     if (image) {
       formData.append("image", image);
     }
-
-    formData.append("_methode", "PUT");
-
+    formData.append("_method", "PUT");
     console.log("FormData content:");
     for (let pair of formData.entries()) {
       console.log(pair[0], pair[1]);
     }
-
     try {
       const token = localStorage.getItem("token")?.replace("Bearer ", "");
       if (!token) throw new Error("Token is missing!");
-
       const response = await fetch(`https://vica.website/api/items/${id}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: "application/json",
         },
-
         body: formData,
-        _method: "PUT",
       });
-
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to update item");
+        console.error("Error response:", errorData);
+        throw new Error(`${errorData.message} - Failed to update item`);
       }
-
       const responseData = await response.json();
       console.log("Update successful:", responseData);
       navigate("/dashboard");
@@ -104,10 +95,12 @@ const EditItem = () => {
 
   return (
     <div className="edit-product-container">
-      <h1 className="edit-title">Edit Product</h1>
+            <h1 className="edit-title">Edit Product</h1>
       <div className="form-container">
+          
         <form onSubmit={handleSubmit} className="product-form">
-          <label className="input-label">Product Name</label>
+                    <label className="input-label">Product Name</label>
+                 
           <input
             type="text"
             placeholder="Product Name"
@@ -116,8 +109,8 @@ const EditItem = () => {
             required
             className="input-field"
           />
-
-          <label className="input-label">Price</label>
+                    <label className="input-label">Price</label>
+                 
           <input
             type="number"
             placeholder="Price"
@@ -126,14 +119,17 @@ const EditItem = () => {
             required
             className="input-field"
           />
-
+                
           <button type="submit" className="save-button">
-            Send
+                        Send       
           </button>
+                
         </form>
-
+              
         <div className="upload-section">
-          <label className="upload-box ">
+                 
+          <label className="upload-box">
+                    
             <input type="file" onChange={handleImageChange} hidden />
             {previewImage ? (
               <img
@@ -148,9 +144,13 @@ const EditItem = () => {
                 alt="Default"
               />
             )}
+                    
           </label>
+                
         </div>
+          
       </div>
+        
     </div>
   );
 };

@@ -11,26 +11,28 @@ import CreateItem from "./pages/CreateItem.jsx";
 import EditItem from "./pages/EditItem.jsx";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-const routes = createBrowserRouter([
-  {
-    path: "/",
-    element: <Auth />,
-    children: [
-      { path: "", element: <SignUp /> },
-      { path: "login", element: <LogIn /> },
-    ],
-  },
-  {
-    path: "/dashboard",
-    element: <Root />,
-    children: [
-      { path: "", element: <Items /> },
-      { path: "item/create", element: <CreateItem /> },
-      { path: "item/edit/:id", element: <EditItem /> },
-    ],
-  },
-  (basename: "/Dashboard"),
-]);
+const routes = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Auth />,
+      children: [
+        { path: "", element: <SignUp /> },
+        { path: "login", element: <LogIn /> },
+      ],
+    },
+    {
+      path: "/dashboard",
+      element: <Root />,
+      children: [
+        { path: "", element: <Items /> },
+        { path: "item/create", element: <CreateItem /> },
+        { path: "item/edit/:id", element: <EditItem /> },
+      ],
+    },
+  ],
+  (basename: "/Dashboard")
+);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
